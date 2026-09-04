@@ -1,23 +1,122 @@
 aid: virtuix
 name: Virtuix
-description: 'Virtuix is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Virtuix is an Austin, Texas maker of omnidirectional VR treadmills. Omni One pairs a full-body VR
+  movement system with its own game store, and Omni Arena is the turnkey location-based VR esports
+  attraction it sells to entertainment venues, with built-in contests and leaderboards. Virtuix runs
+  a real developer program for Omni One — a licensed Unity and Unreal Engine SDK exposing Core,
+  Application, User, Achievements, Leaderboards, Multiplayer and Entitlement Check services, plus
+  the Omni Dev portal where studios register game projects, define leaderboards and publish to the
+  Omni One store — but that platform is reachable only through the game-engine SDK, and Virtuix
+  publishes no OpenAPI and no public HTTP API for it. Its one machine-callable surface is an
+  anonymous, UCP-conforming MCP agent-commerce endpoint on its own domain, which lets an agent
+  search the Omni One catalog and build a cart and checkout with no credential.
+image: https://cdn.shopify.com/s/files/1/0609/8989/8907/files/virtuix_omni_one_og_img.jpg?v=1738174948
 url: https://raw.githubusercontent.com/api-evangelist/virtuix/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-09-04'
 modified: '2026-09-04'
+position: Producing
 tags:
-- Company
-apis: []
+- Virtual Reality
+- Gaming
+- Hardware
+- Agent Commerce
+- Model Context Protocol
+- Universal Commerce Protocol
+- Esports
+- Game Development
+- Location Based Entertainment
+- Consumer Electronics
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: virtuix-agent-commerce
+  name: Virtuix Agent Commerce (UCP / MCP)
+  description: >-
+    The UCP-conforming Model Context Protocol endpoint Virtuix serves from its own domain. Thirteen
+    tools cover catalog search and lookup, product detail, cart create/update/cancel, checkout
+    create/update/complete/cancel and order retrieval, letting an agent shop the Omni One catalog
+    end to end. It answers unauthenticated JSON-RPC 2.0 over HTTP POST at MCP protocol 2025-06-18
+    and declares UCP 2026-08-25. The runtime is the Shopify universal-commerce server; the catalog,
+    the domain and the merchant identity ("Omni One by Virtuix") are Virtuix's.
+  humanURL: https://virtuix.com/
+  baseURL: https://virtuix.com/api/ucp/mcp
+  image: https://cdn.shopify.com/s/files/1/0609/8989/8907/files/virtuix_omni_one_og_img.jpg?v=1738174948
+  tags:
+  - Agent Commerce
+  - Model Context Protocol
+  - Universal Commerce Protocol
+  - Ecommerce
+  properties:
+  - type: MCPServer
+    url: mcp/virtuix-mcp.yml
+  - type: Conventions
+    url: conventions/virtuix-conventions.yml
+  - type: RateLimits
+    url: rate-limits/virtuix-rate-limits.yml
 common:
 - type: Website
-  url: https://www.hiive.com/securities/virtuix-stock
+  url: https://virtuix.com/
+- type: DeveloperPortal
+  url: https://developers.virtuix.com/
+- type: Documentation
+  url: https://docs.virtuix.com/
+- type: APIReference
+  url: https://docs.virtuix.com/doxygen/Unity%20SDK%20Docs/index.html
+- type: GettingStarted
+  url: https://docs.virtuix.com/unity-import-and-install-omni-one-sdk/
+- type: Support
+  url: https://support.virtuix.com/hc/en-us
+- type: Community
+  url: https://discord.gg/qUYvWPj
+- type: Blog
+  url: https://virtuix.com/blogs/news
+- type: Pricing
+  url: https://virtuix.com/products/omni-one-developer-license
+- type: SignUp
+  url: https://virtuix.com/account/login
+- type: TermsOfService
+  url: https://virtuix.com/terms-of-sale
+- type: PrivacyPolicy
+  url: https://virtuix.com/privacy-policy
+- type: License
+  url: https://virtuix.com/omni-one-sdk-eula
+- type: MCPServer
+  url: mcp/virtuix-mcp.yml
+- type: WellKnown
+  url: well-known/virtuix-well-known.yml
+- type: Authentication
+  url: authentication/virtuix-authentication.yml
+- type: OAuthScopes
+  url: scopes/virtuix-scopes.yml
+- type: Conformance
+  url: conformance/virtuix-conformance.yml
+- type: Conventions
+  url: conventions/virtuix-conventions.yml
+- type: Lifecycle
+  url: lifecycle/virtuix-lifecycle.yml
+- type: ChangeLog
+  url: changelog/virtuix-changelog.yml
+- type: Packages
+  url: packages/virtuix-packages.yml
+- type: SDKs
+  url: packages/virtuix-packages.yml
+- type: Plans
+  url: plans/virtuix-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/virtuix-rate-limits.yml
+- type: LLMsTxt
+  url: llms/virtuix-llms.txt
+- type: DomainSecurity
+  url: security/virtuix-domain-security.yml
+x-enrichment:
+  date: '2026-09-04'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v3

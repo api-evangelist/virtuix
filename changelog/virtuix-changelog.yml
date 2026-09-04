@@ -1,0 +1,52 @@
+generated: '2026-09-04'
+method: searched
+source: https://docs.virtuix.com/unity-changelog/
+note: >-
+  Two dated-by-version changelogs exist, one per SDK. Neither carries release dates, only version
+  numbers, so no `date:` is recorded rather than inventing one. There is no changelog for the
+  commerce/MCP surface.
+changelogs:
+  - name: Omni One Unity SDK Changelog
+    url: https://docs.virtuix.com/unity-changelog/
+    scheme: semver
+    current: 1.1.2
+    entries:
+      - version: 1.1.2
+        date: null
+        breaking: false
+        additions:
+          - Added OIDC connection functionality
+      - version: 1.1.1
+        date: null
+        breaking: false
+        highlights:
+          - Fixed AchievementTypes
+          - Documented that Store Region is an ISO country code
+      - version: 1.1.0
+        date: null
+        breaking: false
+        highlights:
+          - Initial build
+  - name: Omni One Unreal SDK Changelog
+    url: https://docs.virtuix.com/unreal-changelog/
+    scheme: semver
+    current: 1.1.2
+    entries:
+      - version: 1.1.2
+        date: null
+        breaking: false
+        additions:
+          - Added support for Unreal Engine 5.3
+        highlights:
+          - Fixed edge cases in communication with SDK backend
+          - Fixed memory-management issue with leaderboard-related models
+      - version: 1.1.1
+        date: null
+        breaking: false
+        highlights:
+          - Fixed an issue where leaderboard-related models did not match the structure of the other SDK models
+      - version: 1.1.0
+        date: null
+        breaking: false
+        highlights:
+          - Initial build

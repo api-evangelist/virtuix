@@ -1,0 +1,61 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  https://virtuix.com/api/mcp (deprecation notice returned in a tools/call response),
+  https://virtuix.com/.well-known/ucp.json,
+  https://docs.virtuix.com/unity-changelog/index.html,
+  https://docs.virtuix.com/unreal-changelog/index.html
+versioning:
+  scheme: dated protocol version negotiated per call
+  current:
+    ucp: '2026-08-25'
+    mcp: '2025-06-18'
+  prior_supported:
+    - '2026-04-08'
+    - '2026-01-23'
+  docs: https://virtuix.com/.well-known/ucp.json
+  sdk:
+    scheme: semver
+    unity_current: 1.1.2
+    unreal_current: 1.1.2
+    docs: https://docs.virtuix.com/unity-changelog/
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  rfc8594: false
+  note: >-
+    Virtuix publishes no written deprecation or versioning policy. It nonetheless serves a real,
+    dated deprecation notice in-band on its legacy MCP endpoint (below), which is the only
+    deprecation signal the company emits.
+  events:
+    - surface: https://virtuix.com/api/mcp
+      replacement: https://virtuix.com/api/ucp/mcp
+      sunset_date: '2026-08-31'
+      notice: >-
+        "DEPRECATION NOTICE: This tool is served by the Storefront MCP server at /api/mcp and will no
+        longer be accessible after August 31, 2026. Migrate to the UCP-conforming tools at
+        /api/ucp/mcp. See https://shopify.dev/docs/agents for migration details."
+      delivery: appended to the tools/call response body
+      observed: '2026-09-04'
+      status_on_observation: >-
+        Still returning 200 with a full tool list four days past its stated sunset date. An agent
+        that trusted the notice would have migrated; one that did not is still being served.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_note: >-
+  status.virtuix.com does not resolve (NXDOMAIN) and no status or uptime page is linked from
+  virtuix.com, docs.virtuix.com or developers.virtuix.com.
+deprecated_operations:
+  - 'mcp/virtuix-storefront-mcp-tools.json#search_shop_policies_and_faqs'
+  - 'mcp/virtuix-storefront-mcp-tools.json#get_product_details'
+  - 'mcp/virtuix-storefront-mcp-tools.json#search_catalog'
+  - 'mcp/virtuix-storefront-mcp-tools.json#get_cart'
+  - 'mcp/virtuix-storefront-mcp-tools.json#update_cart'
+product_lifecycle:
+  note: >-
+    The docs site carries a standing banner on every page — "This documentation is a work in
+    progress. Information may be added or updated in the future." — and the Omni One SDK is at its
+    third release (1.1.0 initial build -> 1.1.2), so the developer platform is early rather than
+    deprecated.

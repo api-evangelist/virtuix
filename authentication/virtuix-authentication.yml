@@ -1,0 +1,62 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  https://www.virtuix.com/.well-known/openid-configuration,
+  https://www.virtuix.com/.well-known/oauth-protected-resource,
+  https://virtuix.com/api/ucp/mcp (anonymous tools/list),
+  https://docs.virtuix.com/unity-changelog/index.html
+docs: https://docs.virtuix.com/
+note: >-
+  No OpenAPI exists for Virtuix, so nothing here is derived from securitySchemes. Every scheme below
+  was read from a discovery document served by a Virtuix host or observed on a live request.
+summary:
+  types: [none, oauth2, openIdConnect]
+  api_key_in: []
+  oauth2_flows: [authorizationCode, refreshToken, jwtBearer]
+schemes:
+  - name: anonymous-mcp
+    type: none
+    applies_to: https://virtuix.com/api/ucp/mcp
+    observed: >-
+      An unauthenticated POST of tools/list and of tools/call search_catalog both returned HTTP 200
+      with real data on 2026-09-04. Catalog, cart and checkout creation are reachable with no
+      credential; buyer-identity-bound operations are the ones that need the customer token below.
+    sources: [probe]
+  - name: shopify-customer-account-oidc
+    type: openIdConnect
+    openIdConnectUrl: https://www.virtuix.com/.well-known/openid-configuration
+    issuer: https://shopify.com/authentication/60989898907
+    authorization_endpoint: https://shopify.com/authentication/60989898907/oauth/authorize
+    token_endpoint: https://shopify.com/authentication/60989898907/oauth/token
+    end_session_endpoint: https://shopify.com/authentication/60989898907/logout
+    jwks_uri: https://shopify.com/authentication/60989898907/.well-known/jwks.json
+    id_token_signing_alg_values_supported: [RS256]
+    code_challenge_methods_supported: [S256]
+    token_endpoint_auth_methods_supported: [client_secret_basic, client_secret_post]
+    grant_types_supported: [authorization_code, refresh_token, 'urn:ietf:params:oauth:grant-type:jwt-bearer']
+    bearer_methods_supported: [header]
+    protected_resource: https://www.virtuix.com
+    note: >-
+      Storefront customer-account identity for the Virtuix shop, issued by the Shopify platform on
+      behalf of this merchant. Virtuix serves the discovery documents from its own hosts; the
+      authorization server is Shopify's.
+    sources: [well-known/virtuix-openid-configuration.json, well-known/virtuix-oauth-protected-resource.json]
+  - name: omni-one-oidc-connection
+    type: openIdConnect
+    applies_to: Omni One game platform services (Unity/Unreal SDK)
+    status: documented-not-discoverable
+    note: >-
+      The Omni One Unity SDK changelog records "Added OIDC connection functionality" in 1.1.2 and the
+      docs carry unity-porting-openid / unreal-online-identity pages, but no issuer, authorization
+      endpoint, or discovery document for the Omni One platform is published anywhere public. The
+      identity flow is reached through the licensed SDK and the Omni Dev developer portal only.
+    sources: ['https://docs.virtuix.com/unity-changelog/index.html']
+  - name: omni-one-entitlement-key
+    type: apiKey
+    applies_to: Omni One Entitlement Check
+    status: gated
+    note: >-
+      Each published Omni One title is issued an "Entitlement Key" on the Omni Dev developer portal
+      and verifies purchase at launch through the SDK. The key is issued per game project behind the
+      portal login; no public key format, header name, or endpoint is documented.
+    sources: ['https://docs.virtuix.com/unity-entitlement-check/index.html']

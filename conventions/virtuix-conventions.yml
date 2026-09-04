@@ -1,0 +1,116 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  https://virtuix.com/api/ucp/mcp (tools/list, 13 tool inputSchemas),
+  https://virtuix.com/.well-known/ucp.json, https://www.virtuix.com/.well-known/openid-configuration
+note: >-
+  Virtuix publishes no OpenAPI and no REST reference, so these conventions describe the ONE
+  machine-callable surface it serves: the UCP/MCP agent-commerce endpoint on virtuix.com. Nothing
+  here is inferred from a spec that does not exist.
+surface: https://virtuix.com/api/ucp/mcp
+transport:
+  protocol: JSON-RPC 2.0 over HTTP POST (MCP 2025-06-18)
+  accept: 'application/json, text/event-stream'
+  content_type: application/json
+authentication:
+  style: none for catalog/cart/checkout; Shopify customer-account OIDC bearer for account-bound calls
+  see: authentication/virtuix-authentication.yml
+versioning:
+  scheme: dated protocol versions negotiated per call
+  mcp_protocol_version: '2025-06-18'
+  ucp_version: '2026-08-25'
+  supported_versions:
+    - '2026-08-25'
+    - '2026-04-08'
+    - '2026-01-23'
+  note: >-
+    ucp.json publishes supported_versions as a map of version -> discovery URL, so a client can pin a
+    prior protocol revision. Every tool call carries a required `meta` object naming the UCP version.
+pagination:
+  style: cursor
+  request_fields: [catalog.pagination.cursor, catalog.pagination.limit]
+  response_fields: [pagination.cursor]
+  default_limit: 10
+  max_limit: 250
+  note: 'Implementations may clamp to a lower maximum than 250 (stated verbatim in the search_catalog inputSchema).'
+money:
+  representation: integer minor units paired with an ISO 4217 currency code
+  example: '{"amount": 150000, "currency": "USD"} is $1,500.00'
+  note: Tool descriptions instruct agents to convert to major units before quoting a price to a buyer.
+identifiers:
+  style: Shopify GID URIs
+  examples:
+    - 'gid://shopify/Product/8579946872987'
+    - 'gid://shopify/ProductVariant/46868906246299'
+    - 'gid://shopify/Cart/c1-...?key=...'
+metadata:
+  field: meta
+  required: true
+  purpose: MCP transport metadata for UCP agent discovery (meta["ucp-agent"].profile)
+  signals:
+    - dev.ucp.buyer_ip
+    - dev.ucp.user_agent
+idempotency:
+  supported: false
+  coverage: none
+  mechanism: null
+  header: null
+  evidence: >-
+    No Idempotency-Key header, client token, or replay-protection field appears in any of the 13 UCP
+    tool inputSchemas, and Virtuix publishes no HTTP API reference that documents one. create_cart,
+    create_checkout and complete_checkout each accept only meta + the resource object.
+  note: >-
+    A retried complete_checkout has no client-supplied dedupe key on this surface. Agents must treat
+    completion as non-replay-safe and reconcile through get_order.
+reversibility:
+  grade: documented
+  na: false
+  write_surface: https://virtuix.com/api/ucp/mcp
+  reversals:
+    - action: create_cart / update_cart
+      reversal: cancel_cart
+      operation: cancel_cart
+      window: null
+      window_source: null
+      note: Cancels a cart. No window is stated in the tool description or in ucp.json.
+    - action: create_checkout / update_checkout
+      reversal: cancel_checkout
+      operation: cancel_checkout
+      window: null
+      window_source: null
+      note: Cancels a checkout. Reachable before completion; no window is stated.
+    - action: complete_checkout
+      reversal: null
+      operation: null
+      window: null
+      note: >-
+        No refund, void or reverse tool exists on the agent surface. Post-purchase reversal is a
+        human process through https://virtuix.com/policies/refund-policy, which states only "Please
+        review our Terms of Sale" and does not publish a return window on that page.
+  evidence:
+    - 'https://virtuix.com/api/ucp/mcp tools/list — cancel_cart and cancel_checkout present, 2026-09-04'
+    - 'https://virtuix.com/policies/refund-policy — 200, no stated window'
+  why_documented_not_verified: >-
+    Reversal operations exist and are named, but no document Virtuix serves states the window inside
+    which either one still works. Asserting a window we did not read would be a fabrication that
+    could cost a buyer money.
+dry_run_mode:
+  supported: false
+  evidence: No test mode, sandbox flag, or simulation parameter appears in any tool inputSchema or in ucp.json.
+error_envelope:
+  format: JSON-RPC 2.0 error object
+  rfc9457: false
+  note: No published problem-type registry, error-code reference, or error catalog exists for any Virtuix surface.
+rate_limit_signal:
+  documented: false
+  headers_observed: []
+  see: rate-limits/virtuix-rate-limits.yml
+tracing:
+  request_id_header: null
+  documented: false
+cross_links:
+  authentication: authentication/virtuix-authentication.yml
+  scopes: scopes/virtuix-scopes.yml
+  lifecycle: lifecycle/virtuix-lifecycle.yml
+  conformance: conformance/virtuix-conformance.yml
+  rate_limits: rate-limits/virtuix-rate-limits.yml

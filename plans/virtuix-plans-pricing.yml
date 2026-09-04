@@ -1,0 +1,36 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  https://virtuix.com/api/ucp/mcp tools/call search_catalog (live, unauthenticated, 2026-09-04) and
+  https://virtuix.com/products/omni-one-developer-license
+plan_count: 0
+note: >-
+  Virtuix publishes no API plans, tiers, quotas or usage pricing, because it sells no API. The one
+  priced developer offering is a perpetual product SKU — the Omni One Developer License — read here
+  from Virtuix's own machine-readable catalog rather than scraped from a marketing page. The
+  commerce MCP endpoint itself is free and unauthenticated. plan_count is 0 because none of this is
+  an API plan; the SKU is recorded separately below so the honest zero is not mistaken for "not
+  checked".
+plans: []
+developer_offerings:
+  - name: Omni One Developer License
+    sku: 'gid://shopify/Product/8579946872987'
+    url: https://virtuix.com/products/omni-one-developer-license
+    price: 1500.00
+    price_minor_units: 150000
+    currency: USD
+    billing_period: one-time
+    availability: available
+    includes:
+      - Full Omni One SDK access for Unreal Engine and Unity
+      - US-based developer support
+      - Access to the developer documentation
+    quota: null
+    overage: null
+    source: 'UCP search_catalog response, price_range.min.amount 150000 USD'
+api_pricing:
+  ucp_mcp_endpoint:
+    url: https://virtuix.com/api/ucp/mcp
+    price: 0
+    auth: none
+    note: Anonymous catalog, cart and checkout tools; no metering, no key, no published quota.

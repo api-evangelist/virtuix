@@ -1,0 +1,145 @@
+generated: '2026-09-04'
+method: probed
+source: live probe of the /.well-known/ surface on every Virtuix host in this record
+note: >-
+  Virtuix runs its storefront (virtuix.com / www.virtuix.com / checkout.virtuix.com) on Shopify.
+  The OAuth/OIDC and UCP documents recovered below are served FROM Virtuix-controlled hostnames but
+  are issued by the Shopify platform for this merchant's store (Shopify shop id 60989898907,
+  merchant_name "Omni One by Virtuix", merchant_origin checkout.virtuix.com). They are recorded as a
+  real served surface with that provenance stated, not as Virtuix-authored specifications.
+  docs.virtuix.com and developers.virtuix.com are single-page/static-fallback hosts that answer 200
+  with an identical HTML shell for EVERY path, including the negative control, so every 200 observed
+  on those two hosts is a catch-all and none is recorded as a document.
+path_echo_control: passed   # negative control 404s on virtuix.com, www.virtuix.com, checkout.virtuix.com
+hit_count: 4
+hosts:
+  - host: https://virtuix.com
+    documents:
+      - path: /.well-known/ucp.json
+        status: 200
+        file: virtuix-ucp.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/acp.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/virtuix-negative-control-7f3ab91c.json
+        status: 404
+  - host: https://www.virtuix.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: virtuix-openid-configuration.json
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: virtuix-oauth-authorization-server.json
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        file: virtuix-oauth-protected-resource.json
+      - path: /.well-known/ucp.json
+        status: 200
+        file: virtuix-ucp.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/virtuix-negative-control-7f3ab91c.json
+        status: 404
+  - host: https://checkout.virtuix.com
+    documents:
+      - path: /.well-known/ucp.json
+        status: 200
+        file: virtuix-ucp.json
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: virtuix-openid-configuration.json
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        file: virtuix-oauth-protected-resource.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/virtuix-negative-control-7f3ab91c.json
+        status: 404
+  - host: https://docs.virtuix.com
+    catch_all: true
+    note: Docusaurus static host returns the same 7,542-byte index shell for every path; negative control also 200. No document recorded.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+      - path: /.well-known/openid-configuration
+        status: 200
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+      - path: /.well-known/api-catalog
+        status: 200
+      - path: /.well-known/ai-plugin.json
+        status: 200
+      - path: /.well-known/apis.json
+        status: 200
+      - path: /apis.json
+        status: 200
+      - path: /.well-known/agent-card.json
+        status: 200
+      - path: /.well-known/agent.json
+        status: 200
+      - path: /.well-known/virtuix-negative-control-7f3ab91c.json
+        status: 200
+  - host: https://developers.virtuix.com
+    catch_all: true
+    note: Create-React-App SPA returns the same 3,087-byte shell for every path; negative control also 200. No document recorded.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+      - path: /.well-known/openid-configuration
+        status: 200
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+      - path: /.well-known/api-catalog
+        status: 200
+      - path: /.well-known/apis.json
+        status: 200
+      - path: /apis.json
+        status: 200
+      - path: /.well-known/agent-card.json
+        status: 200
+      - path: /.well-known/agent.json
+        status: 200
+      - path: /.well-known/virtuix-negative-control-7f3ab91c.json
+        status: 200

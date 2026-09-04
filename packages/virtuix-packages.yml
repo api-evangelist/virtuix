@@ -1,0 +1,56 @@
+generated: '2026-09-04'
+method: searched
+source: >-
+  registry searches of npm, PyPI, NuGet and GitHub on 2026-09-04, plus
+  https://docs.virtuix.com/unity-import-and-install-omni-one-sdk/ and
+  https://virtuix.com/products/omni-one-developer-license
+note: >-
+  Virtuix ships two first-party client libraries — the Omni One SDK for Unity and for Unreal Engine
+  — and neither is distributed through a public package registry. Both are gated behind the $1,500
+  Omni One Developer License and downloaded from the Omni Dev developer portal under the Omni One
+  SDK EULA, so there is no registry metadata endpoint to read a version or a publish date from. The
+  versions below come from the SDKs' own changelog pages, which publish version numbers but no
+  release dates.
+registry_search:
+  - {registry: npm, query: virtuix, results: 0}
+  - {registry: pypi, package: virtuix, status: 404}
+  - {registry: nuget, query: virtuix, results: 0}
+  - {registry: github, org_probed: [Virtuix, virtuix, VirtuixOmni], status: 404, note: 'no Virtuix GitHub organization exists; the 13 repositories matching "virtuix" in code search are all third-party hobby projects'}
+packages:
+  - language: csharp
+    platform: Unity
+    registry: none
+    distribution: developer-portal-download
+    name: Omni One Unity SDK
+    url: https://docs.virtuix.com/unity-import-and-install-omni-one-sdk/
+    reference: https://docs.virtuix.com/doxygen/Unity%20SDK%20Docs/index.html
+    install: 'Download the .unitypackage from the Omni Dev developer portal, then Assets > Import Package > Custom Package'
+    official: true
+    license: https://virtuix.com/omni-one-sdk-eula
+    gated_by: https://virtuix.com/products/omni-one-developer-license
+    version: 1.1.2
+    published: null
+    version_source: https://docs.virtuix.com/unity-changelog/
+    note: >-
+      version read from the SDK changelog, not a registry. published is null because Virtuix
+      publishes version numbers without release dates and there is no registry metadata endpoint to
+      query — checked, nothing to record.
+    services: [Core, Application, User, Achievements, Leaderboards, Multiplayer, Entitlement Check]
+  - language: cpp
+    platform: Unreal Engine
+    registry: none
+    distribution: developer-portal-download
+    name: Omni One Unreal SDK
+    url: https://docs.virtuix.com/unreal-import-and-install-omni-one-sdk/
+    reference: https://docs.virtuix.com/doxygen/Unreal%20SDK%20Docs/index.html
+    install: Copy the Omni One SDK plugin into the project's Plugins directory and enable it in the editor
+    official: true
+    license: https://virtuix.com/omni-one-sdk-eula
+    gated_by: https://virtuix.com/products/omni-one-developer-license
+    version: 1.1.2
+    published: null
+    version_source: https://docs.virtuix.com/unreal-changelog/
+    note: >-
+      version read from the SDK changelog, not a registry. published is null for the same reason as
+      the Unity SDK. Supports Unreal Engine up to 5.3 as of 1.1.2.
+    services: [Online Subsystem, Online Identity, Online Friends, Online Achievements, Online Leaderboard, Entitlement Check]

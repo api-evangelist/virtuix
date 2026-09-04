@@ -1,0 +1,21 @@
+generated: '2026-09-04'
+method: probed
+source: https://virtuix.com/api/ucp/mcp
+limit_count: 0
+note: >-
+  Virtuix publishes no rate-limit documentation for any surface. Live unauthenticated calls to
+  https://virtuix.com/api/ucp/mcp (tools/list) and https://virtuix.com/api/mcp (tools/list and a
+  tools/call of search_catalog) on 2026-09-04 returned 200 and carried NO RateLimit-*,
+  X-RateLimit-*, or Retry-After response headers. The only quantitative ceiling published anywhere
+  is a page-size clamp, not a request rate.
+limits: []
+published_ceilings:
+  - scope: search_catalog pagination
+    field: catalog.pagination.limit
+    default: 10
+    maximum: 250
+    note: 'Stated in the tool inputSchema: "Requested page size. Defaults to 10, maximum is 250. Implementations may clamp to a lower maximum."'
+response_headers:
+  observed: []
+  documented: []
+exhaustion_status: unknown

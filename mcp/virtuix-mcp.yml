@@ -1,0 +1,108 @@
+generated: '2026-09-04'
+method: probed
+status: published
+source: https://virtuix.com/api/ucp/mcp
+ownership: >-
+  Both MCP endpoints are served from virtuix.com, Virtuix's own registrable domain, and expose
+  Virtuix's own product catalog (the tool responses return "Omni One Developer License", "Omni One",
+  Omni One accessories and Omni One game titles, and the store's UCP document names the merchant
+  "Omni One by Virtuix" with merchant_origin checkout.virtuix.com). The MCP runtime itself is the
+  Shopify storefront/universal-commerce server (serverInfo.name "universal-commerce" /
+  "storefront-renderer"), i.e. Virtuix's commerce surface operated on Shopify — not a
+  Virtuix-authored protocol server. Recorded with that provenance stated.
+deployment:
+  mode: remote
+  endpoint: https://virtuix.com/api/ucp/mcp
+  auth: none
+  verified: probed
+servers:
+  - name: virtuix-ucp-commerce
+    role: current
+    transport: http
+    url: https://virtuix.com/api/ucp/mcp
+    protocol_version: '2025-06-18'
+    server_info:
+      name: universal-commerce
+      version: 0.1.0
+    auth: none
+    tools_file: virtuix-ucp-mcp-tools.json
+    tool_count: 13
+    conforms: UCP dev.ucp.shopping 2026-08-25
+    x-evidence:
+      fetched: '2026-09-04'
+      method: 'POST tools/list (JSON-RPC 2.0)'
+      http_status: 200
+  - name: virtuix-storefront-mcp
+    role: deprecated
+    transport: http
+    url: https://virtuix.com/api/mcp
+    protocol_version: '2025-06-18'
+    server_info:
+      name: storefront-renderer
+      version: 0.1.0
+    auth: none
+    tools_file: virtuix-storefront-mcp-tools.json
+    tool_count: 5
+    deprecation:
+      announced_in: tool_call response notice
+      notice: >-
+        "This tool is served by the Storefront MCP server at /api/mcp and will no longer be
+        accessible after August 31, 2026. Migrate to the UCP-conforming tools at /api/ucp/mcp."
+      sunset_date: '2026-08-31'
+      observed_still_responding: '2026-09-04'
+      migrate_to: https://virtuix.com/api/ucp/mcp
+    x-evidence:
+      fetched: '2026-09-04'
+      method: 'POST tools/list + tools/call search_catalog'
+      http_status: 200
+tools:
+  - name: get_checkout
+    server: virtuix-ucp-commerce
+    description: Returns details about the checkout, including line items, totals, discounts and taxes.
+  - name: create_checkout
+    server: virtuix-ucp-commerce
+    description: Creates a checkout and returns its details.
+  - name: update_checkout
+    server: virtuix-ucp-commerce
+    description: Updates a checkout and returns its details.
+  - name: complete_checkout
+    server: virtuix-ucp-commerce
+    description: Completes a checkout and returns the checkout result.
+  - name: cancel_checkout
+    server: virtuix-ucp-commerce
+    description: Cancels a checkout.
+  - name: get_cart
+    server: virtuix-ucp-commerce
+    description: Get the cart contents.
+  - name: create_cart
+    server: virtuix-ucp-commerce
+    description: Creates a new cart.
+  - name: update_cart
+    server: virtuix-ucp-commerce
+    description: Perform updates to a cart (line items, buyer info, delivery, discounts, notes).
+  - name: cancel_cart
+    server: virtuix-ucp-commerce
+    description: Cancels a cart.
+  - name: get_order
+    server: virtuix-ucp-commerce
+    description: Get the details of an order.
+  - name: search_catalog
+    server: virtuix-ucp-commerce
+    description: Search Virtuix products with natural-language queries and/or filters. Conforms to dev.ucp.shopping.catalog.search.
+  - name: lookup_catalog
+    server: virtuix-ucp-commerce
+    description: Look up multiple products or variants by identifier.
+  - name: get_product
+    server: virtuix-ucp-commerce
+    description: Retrieve complete product detail by identifier.
+  - name: search_shop_policies_and_faqs
+    server: virtuix-storefront-mcp
+    description: Get facts about the store's policies, products or services. (deprecated server)
+  - name: get_product_details
+    server: virtuix-storefront-mcp
+    description: Look up a product by id, optionally selecting a variant. (deprecated server)
+x-not-found:
+  omni_one_platform_http_api: >-
+    The Omni One developer platform (Achievements, Leaderboards, Multiplayer, User, Application,
+    Core, Entitlement Check, OIDC) is exposed ONLY as Unity C# and Unreal C++ SDK classes through
+    the licensed Omni One SDK. No HTTP contract, base URL, or MCP surface for it is published.

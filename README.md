@@ -64,5 +64,5 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Virtuix is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
+Virtuix is an Austin, Texas maker of omnidirectional VR treadmills. Omni One is its consumer and enterprise full-body VR movement system with its own game store; Omni Arena is the turnkey location-based VR esports attraction it sells to venues. Virtuix runs a licensed Unity and Unreal Engine developer program for Omni One (Core, Application, User, Achievements, Leaderboards, Multiplayer, Entitlement Check) behind the Omni Dev portal, but publishes no OpenAPI, no REST reference and no public HTTP API for it. Its one machine-callable surface is an anonymous, UCP-conforming MCP agent-commerce endpoint at https://virtuix.com/api/ucp/mcp.
 - https://www.hiive.com/securities/virtuix-stock

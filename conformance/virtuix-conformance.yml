@@ -1,0 +1,109 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  https://virtuix.com/.well-known/ucp.json, https://virtuix.com/api/ucp/mcp (tools/list +
+  initialize), https://www.virtuix.com/.well-known/openid-configuration
+note: >-
+  Every conformance below is read from a document Virtuix's own hosts actually served on 2026-09-04,
+  not from a marketing claim. The documents are issued by the Shopify platform for Virtuix's store;
+  the conformance is real for anyone calling virtuix.com, and the provenance is stated so it is not
+  mistaken for a Virtuix-authored implementation.
+standards:
+  - id: ucp
+    name: Universal Commerce Protocol
+    version: '2026-08-25'
+    conforms: true
+    evidence: >-
+      https://virtuix.com/.well-known/ucp.json declares ucp.version 2026-08-25 and
+      services["dev.ucp.shopping"] with transport mcp
+    spec: https://ucp.dev/2026-08-25/specification/overview/
+  - id: ucp-shopping-catalog-search
+    conforms: true
+    evidence: 'ucp.json capabilities dev.ucp.shopping.catalog.search 2026-08-25; search_catalog tool response carries a ucp.capabilities echo'
+  - id: ucp-shopping-catalog-lookup
+    conforms: true
+    evidence: ucp.json capabilities dev.ucp.shopping.catalog.lookup 2026-08-25
+  - id: ucp-shopping-cart
+    conforms: true
+    evidence: ucp.json capabilities dev.ucp.shopping.cart 2026-08-25; create_cart/update_cart/get_cart/cancel_cart tools present
+  - id: ucp-shopping-checkout
+    conforms: true
+    evidence: ucp.json capabilities dev.ucp.shopping.checkout 2026-08-25; create/update/complete/cancel_checkout tools present
+  - id: ucp-shopping-fulfillment
+    conforms: true
+    evidence: 'ucp.json capabilities dev.ucp.shopping.fulfillment 2026-08-25, method_combinations [[shipping]]'
+  - id: ucp-shopping-discount
+    conforms: true
+    evidence: ucp.json capabilities dev.ucp.shopping.discount 2026-08-25
+  - id: ucp-shopping-order
+    conforms: true
+    evidence: ucp.json capabilities dev.ucp.shopping.order 2026-08-25; get_order tool present
+  - id: mcp
+    name: Model Context Protocol
+    version: '2025-06-18'
+    conforms: true
+    evidence: >-
+      POST https://virtuix.com/api/ucp/mcp initialize returned protocolVersion 2025-06-18 with
+      tools/prompts/resources/logging capabilities
+  - id: json-schema-2020-12
+    conforms: true
+    evidence: every MCP tool inputSchema declares $schema https://json-schema.org/draft/2020-12/schema
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      https://www.virtuix.com/.well-known/oauth-authorization-server (RFC 8414) — authorization_code
+      + refresh_token + jwt-bearer grants, client_secret_basic/post
+  - id: oidc
+    name: OpenID Connect Discovery 1.0
+    conforms: true
+    evidence: >-
+      https://www.virtuix.com/.well-known/openid-configuration — issuer
+      https://shopify.com/authentication/60989898907, RS256 id_token, jwks_uri published
+  - id: rfc9728-oauth-protected-resource
+    conforms: true
+    evidence: >-
+      https://www.virtuix.com/.well-known/oauth-protected-resource declares resource
+      https://www.virtuix.com and authorization_servers[]
+  - id: pkce-rfc7636
+    conforms: true
+    evidence: code_challenge_methods_supported [S256] in the OIDC discovery document
+  - id: iso4217-minor-units
+    conforms: true
+    evidence: UCP price objects returned as integer minor units plus a currency code (150000 USD = $1,500.00)
+  - id: iso3166-1-alpha-2
+    conforms: true
+    evidence: catalog context address_country documented as ISO 3166-1 alpha-2; Omni One SDK documents Store Region as an ISO country code
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: no HTTP error envelope is published; the only machine surface is JSON-RPC over MCP
+  - id: openapi
+    conforms: false
+    evidence: no OpenAPI/Swagger document found on any Virtuix host (see x-discovery)
+  - id: asyncapi
+    conforms: false
+    evidence: no event, streaming or webhook surface is published
+domain_standard:
+  market: agentic commerce / retail
+  standard: ucp
+  declared_in_contract: true
+  evidence: >-
+    https://virtuix.com/.well-known/ucp.json — the store's own discovery document declares the
+    dev.ucp.shopping service namespace, seven dev.ucp.shopping.* capabilities and the
+    dev.shopify.catalog extension, and the MCP tool descriptions name the UCP capability they
+    implement ("Response conforms to the UCP catalog search capability (dev.ucp.shopping.catalog.search)").
+    This is a contract-level declaration, not a prose claim on a marketing page.
+x-discovery:
+  openapi_probed:
+    - {url: 'https://virtuix.com/openapi.json', status: 404}
+    - {url: 'https://virtuix.com/swagger.json', status: 404}
+    - {url: 'https://virtuix.com/api-docs', status: 404}
+    - {url: 'https://www.virtuix.com/openapi.json', status: 404}
+    - {url: 'https://docs.virtuix.com/openapi.json', status: 200, note: 'HTML shell — Docusaurus catch-all, not a spec'}
+    - {url: 'https://developers.virtuix.com/openapi.json', status: 200, note: 'HTML shell — SPA catch-all, not a spec'}
+    - {url: 'https://api.virtuix.com/', status: 0, note: 'NXDOMAIN — no api host exists'}
+    - {url: 'https://developer.virtuix.com/', status: 0, note: 'NXDOMAIN'}
+  graphql_probed:
+    - {url: 'https://virtuix.com/graphql', status: 404}
+  ogc: not-applicable
+  wsdl: not-applicable
+  grpc: not-applicable
