@@ -1,16 +1,15 @@
 aid: virtuix
 name: Virtuix
-description: >-
-  Virtuix is an Austin, Texas maker of omnidirectional VR treadmills. Omni One pairs a full-body VR
-  movement system with its own game store, and Omni Arena is the turnkey location-based VR esports
-  attraction it sells to entertainment venues, with built-in contests and leaderboards. Virtuix runs
-  a real developer program for Omni One — a licensed Unity and Unreal Engine SDK exposing Core,
-  Application, User, Achievements, Leaderboards, Multiplayer and Entitlement Check services, plus
-  the Omni Dev portal where studios register game projects, define leaderboards and publish to the
-  Omni One store — but that platform is reachable only through the game-engine SDK, and Virtuix
-  publishes no OpenAPI and no public HTTP API for it. Its one machine-callable surface is an
-  anonymous, UCP-conforming MCP agent-commerce endpoint on its own domain, which lets an agent
-  search the Omni One catalog and build a cart and checkout with no credential.
+description: Virtuix is an Austin, Texas maker of omnidirectional VR treadmills. Omni One pairs a full-body
+  VR movement system with its own game store, and Omni Arena is the turnkey location-based VR esports
+  attraction it sells to entertainment venues, with built-in contests and leaderboards. Virtuix runs a
+  real developer program for Omni One — a licensed Unity and Unreal Engine SDK exposing Core, Application,
+  User, Achievements, Leaderboards, Multiplayer and Entitlement Check services, plus the Omni Dev portal
+  where studios register game projects, define leaderboards and publish to the Omni One store — but that
+  platform is reachable only through the game-engine SDK, and Virtuix publishes no OpenAPI and no public
+  HTTP API for it. Its one machine-callable surface is an anonymous, UCP-conforming MCP agent-commerce
+  endpoint on its own domain, which lets an agent search the Omni One catalog and build a cart and checkout
+  with no credential.
 image: https://cdn.shopify.com/s/files/1/0609/8989/8907/files/virtuix_omni_one_og_img.jpg?v=1738174948
 url: https://raw.githubusercontent.com/api-evangelist/virtuix/refs/heads/main/apis.yml
 x-type: company
@@ -20,6 +19,17 @@ created: '2026-09-04'
 modified: '2026-09-04'
 position: Producing
 tags:
+- Virtual Reality
+- Gaming
+- Hardware
+- Agent Commerce
+- MCP
+- Universal Commerce Protocol
+- Esports
+- Game Development
+- Location-Based Entertainment
+- Consumer Electronics
+tags_raw:
 - Virtual Reality
 - Gaming
 - Hardware
@@ -36,19 +46,23 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 apis:
-- aid: virtuix-agent-commerce
+- aid: virtuix:virtuix-agent-commerce
   name: Virtuix Agent Commerce (UCP / MCP)
-  description: >-
-    The UCP-conforming Model Context Protocol endpoint Virtuix serves from its own domain. Thirteen
-    tools cover catalog search and lookup, product detail, cart create/update/cancel, checkout
-    create/update/complete/cancel and order retrieval, letting an agent shop the Omni One catalog
-    end to end. It answers unauthenticated JSON-RPC 2.0 over HTTP POST at MCP protocol 2025-06-18
-    and declares UCP 2026-08-25. The runtime is the Shopify universal-commerce server; the catalog,
-    the domain and the merchant identity ("Omni One by Virtuix") are Virtuix's.
+  description: The UCP-conforming Model Context Protocol endpoint Virtuix serves from its own domain.
+    Thirteen tools cover catalog search and lookup, product detail, cart create/update/cancel, checkout
+    create/update/complete/cancel and order retrieval, letting an agent shop the Omni One catalog end
+    to end. It answers unauthenticated JSON-RPC 2.0 over HTTP POST at MCP protocol 2025-06-18 and declares
+    UCP 2026-08-25. The runtime is the Shopify universal-commerce server; the catalog, the domain and
+    the merchant identity ("Omni One by Virtuix") are Virtuix's.
   humanURL: https://virtuix.com/
   baseURL: https://virtuix.com/api/ucp/mcp
   image: https://cdn.shopify.com/s/files/1/0609/8989/8907/files/virtuix_omni_one_og_img.jpg?v=1738174948
   tags:
+  - Agent Commerce
+  - MCP
+  - Universal Commerce Protocol
+  - E-Commerce
+  tags_raw:
   - Agent Commerce
   - Model Context Protocol
   - Universal Commerce Protocol
