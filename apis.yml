@@ -22,7 +22,7 @@ tags:
 - Virtual Reality
 - Gaming
 - Hardware
-- Agent Commerce
+- Agentic Commerce
 - MCP
 - Universal Commerce Protocol
 - Esports
@@ -58,7 +58,7 @@ apis:
   baseURL: https://virtuix.com/api/ucp/mcp
   image: https://cdn.shopify.com/s/files/1/0609/8989/8907/files/virtuix_omni_one_og_img.jpg?v=1738174948
   tags:
-  - Agent Commerce
+  - Agentic Commerce
   - MCP
   - Universal Commerce Protocol
   - E-Commerce
