@@ -74,6 +74,9 @@ apis:
     url: conventions/virtuix-conventions.yml
   - type: RateLimits
     url: rate-limits/virtuix-rate-limits.yml
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 common:
 - type: Website
   url: https://virtuix.com/
