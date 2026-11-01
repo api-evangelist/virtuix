@@ -64,5 +64,119 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Virtuix is an Austin, Texas maker of omnidirectional VR treadmills. Omni One is its consumer and enterprise full-body VR movement system with its own game store; Omni Arena is the turnkey location-based VR esports attraction it sells to venues. Virtuix runs a licensed Unity and Unreal Engine developer program for Omni One (Core, Application, User, Achievements, Leaderboards, Multiplayer, Entitlement Check) behind the Omni Dev portal, but publishes no OpenAPI, no REST reference and no public HTTP API for it. Its one machine-callable surface is an anonymous, UCP-conforming MCP agent-commerce endpoint at https://virtuix.com/api/ucp/mcp.
-- https://www.hiive.com/securities/virtuix-stock
+Virtuix is an Austin, Texas maker of omnidirectional VR treadmills. Omni One pairs a full-body VR movement system with its own game store, and Omni Arena is the turnkey location-based VR esports attraction it sells to entertainment venues, with built-in contests and leaderboards. Virtuix runs a real developer program for Omni One — a licensed Unity and Unreal Engine SDK exposing Core, Application, User, Achievements, Leaderboards, Multiplayer and Entitlement Check services, plus the Omni Dev portal where studios register game projects, define leaderboards and publish to the Omni One store — but that platform is reachable only through the game-engine SDK, and Virtuix publishes no OpenAPI and no public HTTP API for it. Its one machine-callable surface is an anonymous, UCP-conforming MCP agent-commerce endpoint on its own domain, which lets an agent search the Omni One catalog and build a cart and checkout with no credential.
+
+**Areas:** Virtual Reality · Gaming · Hardware · Agentic Commerce · MCP · Universal Commerce Protocol · Esports · Game Development · Location-Based Entertainment · Consumer Electronics
+
+## Virtuix on APIs.io
+
+Everything profiled for Virtuix is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/virtuix/](https://apis.io/providers/virtuix/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Virtuix Agent Commerce (UCP / MCP)](https://apis.io/apis/virtuix/virtuix-agent-commerce/) — The UCP-conforming Model Context Protocol endpoint Virtuix serves from its own domain. Thirteen tools cover catalog search and lookup, product detail, cart…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [virtuix-mcp.yml](https://apis.io/servers/virtuix/virtuix-mcp-yml/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Virtuix Authentication](https://apis.io/security/virtuix/virtuix-authentication/)
+- [Virtuix Domain Security](https://apis.io/security/virtuix/virtuix-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Virtuix Scopes](https://apis.io/scopes/virtuix/virtuix-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Virtuix Plans Pricing](https://apis.io/plans/virtuix/virtuix-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Virtuix Rate Limits](https://apis.io/rate-limits/virtuix/virtuix-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://virtuix.com/)
+- [Documentation](https://docs.virtuix.com/)
+- [Getting started](https://docs.virtuix.com/unity-import-and-install-omni-one-sdk/)
+- [API reference](https://docs.virtuix.com/doxygen/Unity%20SDK%20Docs/index.html)
+- [Pricing](https://virtuix.com/products/omni-one-developer-license)
+- [Sign up](https://virtuix.com/account/login)
+- [Support](https://support.virtuix.com/hc/en-us)
+- [Blog](https://virtuix.com/blogs/news)
+- [Terms of service](https://virtuix.com/terms-of-sale)
+- [Privacy policy](https://virtuix.com/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 30.2** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 44.7 |
+
+**Agent readiness 22.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | platform (partial credit) |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/virtuix/](https://apis.io/providers/virtuix/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Virtuix: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/virtuix/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
